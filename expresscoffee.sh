@@ -24,8 +24,8 @@ echo $'{
   		\"dependencies\": {
     		\"grunt\": \"~0.4.1\",
     		\"grunt-contrib-watch\": \"~0.5.2\",
-    		\"haml\": \"~0.4.3\"
-  		},
-  		\"devDependencies\": {}
+    		\"haml\": \"~0.4.3\",
+    		\"coffee-script\": \"~1.6.3\"
+  		}
   	}' > ./package.json
 
