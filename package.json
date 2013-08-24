@@ -1,0 +1,11 @@
+{
+  		"name": "express-yourself", 
+  		"version": "0.0.0",
+  		"description": "express (your self) with coffee",
+  		"dependencies": {
+    		"grunt": "~0.4.1",
+    		"grunt-contrib-watch": "~0.5.2",
+    		"haml": "~0.4.3"
+  		},
+  		"devDependencies": {}
+  	}
