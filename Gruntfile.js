@@ -23,18 +23,28 @@ module.exports = function(grunt) {
       var src = _files.src;
       var dst = _files.dest;
 
-      var spawn = require('child_process').spawn;
-      var command = "coffee --compile --output " + dst + " " + src;
-      spawn('sh', ['-c', command], { stdio: 'inherit' });
-      command = "cp -fr " + src + "/views " + dst + "/views";
-      spawn('sh', ['-c', command], { stdio: 'inherit' });
-
-      command = 'kill `ps ux | grep node | grep js | cut -d" " -f3`';
-
-      spawn('sh', ['-c', command], { stdio: 'inherit' });
-      command = 'node ./build/app.js';
-      spawn('sh', ['-c', command], { stdio: 'inherit' });
-
+      try{
+            var done = this.async();
+            var spawn = require('child_process').spawn;
+            var command = "coffee --compile --output " + dst + " " + src;
+            spawn('sh', ['-c', command], { stdio: 'inherit' });
+            command = "cp -fr " + src + "/views " + dst + "/views";
+            spawn('sh', ['-c', command], { stdio: 'inherit' });
+            setTimeout(function(){
+                command = 'kill `ps ux | grep node | grep js | cut  -d" " -f4`';
+                console.log(command);
+                spawn('sh', ['-c', command], { stdio: 'inherit' });
+                command = 'node ./build/app.js';
+                spawn('sh', ['-c', command], { stdio: 'inherit' });
+                done();
+            },300);
+            
+            
+            
+      }
+      catch (e){
+        console.log(e);
+      }
       return true;
   });
 
