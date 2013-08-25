@@ -31,19 +31,18 @@ module.exports = function(grunt) {
             command = "cp -fr " + src + "/views " + dst + "/views";
             spawn('sh', ['-c', command], { stdio: 'inherit' });
             setTimeout(function(){
-                command = 'kill `ps ux | grep node | grep js | cut  -d" " -f4`';
+                command = ' for x in `ps ux | grep node | grep js | cut  -d" " -f3`; do  kill $x; done';
                 console.log(command);
                 spawn('sh', ['-c', command], { stdio: 'inherit' });
                 command = 'node ./build/app.js';
                 spawn('sh', ['-c', command], { stdio: 'inherit' });
                 done();
+                return true;
             },300);
-            
-            
-            
       }
       catch (e){
         console.log(e);
+        return true;
       }
       return true;
   });
