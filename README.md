@@ -1,7 +1,6 @@
 #expressYourself
 
 scaffold for expressjs with coffeescript and haml
-===============
 
 use:
         git clone https://github.com/yonatan-py/expressYourself <app-name>;
