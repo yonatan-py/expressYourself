@@ -7,7 +7,9 @@ routes = require("./routes")
 user = require("./routes/user")
 http = require("http")
 path = require("path")
+brackets = require("brackets")
 app = express()
+
 
 # all environments
 app.set "port", process.env.PORT or 3000
@@ -20,6 +22,7 @@ app.use express.methodOverride()
 app.use app.router
 app.use require("less-middleware")(src: __dirname + "/public")
 app.use express.static(path.join(__dirname, "public"))
+app.use "/brackets", brackets()
 
 # development only
 app.use express.errorHandler()  if "development" is app.get("env")
