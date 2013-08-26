@@ -6,7 +6,7 @@ echo `pwd`
 mkdir ./build
 mv ./* ./build/
 mkdir -p ./src/routes
-
+mkdir ./src/views
 
 js2coffee ./build/app.js > ./src/app.coffee
 js2coffee ./build/routes/index.js > ./src/routes/index.coffee
@@ -25,7 +25,11 @@ echo $'{
     		\"grunt\": \"~0.4.1\",
     		\"grunt-contrib-watch\": \"~0.5.2\",
     		\"haml\": \"~0.4.3\",
-    		\"coffee-script\": \"~1.6.3\"
+    		\"coffee-script\": \"~1.6.3\",
+        \"brackets\": \"~0.3.0\"
   		}
   	}' > ./package.json
 
+sudo npm install
+cd ./build
+sudo npm install
