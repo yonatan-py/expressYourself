@@ -24,21 +24,43 @@ module.exports = function(grunt) {
       var dst = _files.dest;
 
       try{
-            var done = this.async();
+
             var spawn = require('child_process').spawn;
-            var command = "coffee --compile --output " + dst + " " + src;
+            var command;
+
+            
+
+            // run the coffee
+            command = "coffee --compile --output " + dst + " " + src;
+            console.log(command);
             spawn('sh', ['-c', command], { stdio: 'inherit' });
+            
             command = "cp -fr " + src + "/views " + dst + "/views";
+            console.log(command);
             spawn('sh', ['-c', command], { stdio: 'inherit' });
+            
+            var done = this.async();
             setTimeout(function(){
-                command = ' for x in `ps ux | grep node | grep js | cut  -d" " -f3`; do  kill $x; done';
+                
+                command = ' for x in `ps ux | grep node | grep app.js | cut  -d" " -f3`; do  kill $x; done';
                 console.log(command);
                 spawn('sh', ['-c', command], { stdio: 'inherit' });
                 command = 'node ./build/app.js';
+                console.log(command);
                 spawn('sh', ['-c', command], { stdio: 'inherit' });
+                
+                // // end make sure Brackets is running
+             
+                // command = "if [ -z `ps ux | grep brackatir | grep js` 2> /dev/null ] ; then  `node ./brackatir.js` ; fi;";
+                // console.log(command);
+                // spawn('sh', ['-c', command], { stdio: 'inherit' });
+
                 done();
                 return true;
             },300);
+
+
+
       }
       catch (e){
         console.log(e);
@@ -47,8 +69,9 @@ module.exports = function(grunt) {
       return true;
   });
 
+
   // Default task(s).
-  grunt.registerTask('default', ['coffee']);
+  grunt.registerTask('default', ['coffee', 'watch']);
   grunt.loadNpmTasks('grunt-contrib-watch');
 
 };

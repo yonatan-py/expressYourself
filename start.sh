@@ -1,0 +1,2 @@
+node ./brackatir.js&
+grunt
