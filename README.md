@@ -10,14 +10,6 @@ Use:
     sudo chmod 776 ./start.sh
     ./start.sh
 
-go to:
+go to: `http://localhost:3000`, to see app.
 
-    localhost:3000
-
-to see app.
-
-go to: 
-
-    localhost:5000/bracket
-    
-to see editor.
+go to: `http://localhost:5000/bracket`, to see the Brackets editor.
